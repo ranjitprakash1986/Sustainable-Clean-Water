@@ -33,7 +33,21 @@ The geocoordinates have been jittered randomly for privacy protection with a ran
 
 The complete dataset can be downloaded [here](https://www.kaggle.com/competitions/bizinnovate-2023/data). This project is developed from SustainBench. The details of related domains of research under SustainBench can be read [here](https://openreview.net/pdf?id=5HR3vCylqD). The satellite images were source from [here](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=9441016)
 
-## Analysis Roadmap
+## Approach
+
+The features that very unique to each example and did not provided information for model building were dropped. Thus features `latitude`, `longitude`, `n_asset`, `asset_index` were retained from the provided dataset. A baseline regression model was created to assess the performance based on the provided tabular data before exploring the image data. `RidgeCv` linear regression provided an r2 score of 0.55 on the cross validation set. This provided motivation to supplement the existing feature information with image data.
+
+Convolutional neural networks (CNN) are powerful deep learning models for image recognition. The satellite images represent spatial data that could correlate with the target water index prediction. However the CNN model even using pretrained models, did not yield much improvement over the basic regression models.
+
+### Feature Engineering
+
+The discouraging results fromt the CNN model turned my focus towards feature engineering. It involves the process of extracting or creating meaniful features to capture aspects of the data that might help in the target prediction. Image filters are techniques that are popular in image processing and computer vision tasks. I experimented with two image filters: `Sobel` and `Entropy` filters.
+
+`Sobel` filter: The Sobel filter is used in edge detection in images. It works by highlighting the images in the image by detecting the changes in intensity values between the pixels.
+
+`Entropy` filter: The entropy filter processes images by representing the randomness or uncertainty in an image in the form of entropy. It calculates the entropy value at each pixel. The high entropy value regions get highlighted consequently. This filter is very useful for detecting texture and patterns in an image.
+
+The Sobel and Entropy filters provide images as outputs. Using these images directly as features can lead to curse of dimensionality. The training set contains roughly 18 thousand examples. Thus I utilized Principal Component Analysis to extract the essential features that describe the maximum variance from the aforementioned filters.
 
 ## Results and Conclusions Roadmap
 
