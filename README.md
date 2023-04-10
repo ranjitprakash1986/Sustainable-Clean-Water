@@ -39,6 +39,8 @@ The features that very unique to each example and did not provided information f
 
 Convolutional neural networks (CNN) are powerful deep learning models for image recognition. The satellite images represent spatial data that could correlate with the target water index prediction. However the CNN model even using pretrained models, did not yield much improvement over the basic regression models.
 
+### Exploratory Data Analysis
+
 ### Feature Engineering
 
 The discouraging results fromt the CNN model turned my focus towards feature engineering. It involves the process of extracting or creating meaniful features to capture aspects of the data that might help in the target prediction. Image filters are techniques that are popular in image processing and computer vision tasks. I experimented with two image filters: `Sobel` and `Entropy` filters.
